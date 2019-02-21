@@ -32,18 +32,16 @@ data frame with bed shear stress etc.
 Calculates the combined bed shear stress from waves and tides
 }
 \examples{
-# Calculating cell areas for NOAA world ocean atlas data sample file
-ff <- system.file("extdata", "woa18_decav_t01_01.nc", package = "rcdo")
-nc_cellareas(ff)
-
 # Calculating a time series of bed shear stress at Stonehaven
 library(bedshear)
 library(dplyr)
 library(ggplot2)
-stonehaven_stress <- shields_bedshear(Depth,0.0002, sample_data$tidal_velocity, sample_data$tidal_direction,sample_data$wave_height,
-																		sample_data$wave_period , switch = 0, sample_data$wave_direction )
+
+stonehaven_stress <- shields_bedshear(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
+																		stonehaven_ts$wave_period , switch = 0, stonehaven_ts$wave_direction )
+
 stonehaven_ts \%>\%
-	mutate(Stress = new_result$shearmax) \%>\%
+	mutate(Stress = stonehaven_stress$shearmax) \%>\%
 	ggplot(aes(Date, Stress))+
-	geom_line()
+geom_line()
 }
