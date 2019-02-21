@@ -1,5 +1,6 @@
 #include <Rcpp.h>
-#include <math.h>
+#include <stdlib.h>
+#include <cmath>
 using namespace Rcpp;
 
 // @export
@@ -224,10 +225,10 @@ std::vector< std::vector<double> >  stress(double h,
 									tm_r = swd*CDm*mu*mu;
 									tmax_r = swd*CDmax*mu*mu;
 
-									if(isnan(tm_r)==TRUE)
+									if(std::isnan(tm_r)==TRUE)
 									tm_r = 0;
 
-									if(isnan(tmax_r)==TRUE)
+									if(std::isnan(tmax_r)==TRUE)
 									tmax_r = 0;
 
 									//// calculate tm_s and tmax_s
@@ -246,10 +247,10 @@ std::vector< std::vector<double> >  stress(double h,
 
 									tm_s = swd*CDm*mu*mu;
 									tmax_s = swd*CDmax*mu*mu;
-									if(isnan(tm_s)==TRUE)
+									if(std::isnan(tm_s)==TRUE)
 									tm_s = 0;
 
-									if(isnan(tmax_s)==TRUE)
+									if(std::isnan(tmax_s)==TRUE)
 									tmax_s = 0;
 									tm = tm_r;
 									tmax = tmax_r;
