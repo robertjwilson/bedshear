@@ -3,7 +3,6 @@
 #include <cmath>
 using namespace Rcpp;
 
-// @export
 // [[Rcpp::export]]
 
 std::vector< std::vector<double> >  stress(double h,
