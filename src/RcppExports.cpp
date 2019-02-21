@@ -5,19 +5,27 @@
 
 using namespace Rcpp;
 
-// rcpp_hello
-List rcpp_hello();
-RcppExport SEXP _bedshear_rcpp_hello() {
+// stress
+std::vector< std::vector<double> > stress(double h, double D50, std::vector<double> mu_V, std::vector<double> phic_V, std::vector<double> Hs_V, std::vector<double> Px_V, int switch1, std::vector<double> phiw_V);
+RcppExport SEXP _bedshear_stress(SEXP hSEXP, SEXP D50SEXP, SEXP mu_VSEXP, SEXP phic_VSEXP, SEXP Hs_VSEXP, SEXP Px_VSEXP, SEXP switch1SEXP, SEXP phiw_VSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello());
+    Rcpp::traits::input_parameter< double >::type h(hSEXP);
+    Rcpp::traits::input_parameter< double >::type D50(D50SEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type mu_V(mu_VSEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type phic_V(phic_VSEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type Hs_V(Hs_VSEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type Px_V(Px_VSEXP);
+    Rcpp::traits::input_parameter< int >::type switch1(switch1SEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type phiw_V(phiw_VSEXP);
+    rcpp_result_gen = Rcpp::wrap(stress(h, D50, mu_V, phic_V, Hs_V, Px_V, switch1, phiw_V));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_bedshear_rcpp_hello", (DL_FUNC) &_bedshear_rcpp_hello, 0},
+    {"_bedshear_stress", (DL_FUNC) &_bedshear_stress, 8},
     {NULL, NULL, 0}
 };
 
