@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include <cmath>
 using namespace Rcpp;
 
 // @export
@@ -24,7 +25,10 @@ std::vector< std::vector<double> >  stress(double h,
 									double tm_r, tmax_r;
 									double phi;
 									double ar, T1, T2, T3, A1, A2, CDm, CDmax;
-									std::vector< std::vector<double> > output(35040, std::vector<double>(8));
+									int vect_size;
+									vect_size = mu_V.size();
+
+									std::vector< std::vector<double> > output(vect_size, std::vector<double>(8));
 
 									int rr = 0;
 
@@ -38,8 +42,6 @@ std::vector< std::vector<double> >  stress(double h,
 									// sediment density (= typically 2650 kg/m3)
 									sed = 2650;
 
-									int vect_size;
-									vect_size = mu_V.size();
 
 									for(rr = 0; rr < vect_size; rr++){
 
