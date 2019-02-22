@@ -15,8 +15,6 @@ orbital_velocity(bathymetry = NULL, wave_height = NULL,
 \item{wave_period}{Wave period.}
 
 \item{switch}{Switching term. Defaults to 0.}
-
-\item{wave_direction}{Wave direction.}
 }
 \value{
 numeric vector of wave orbital velocities
@@ -30,7 +28,7 @@ library(bedshear)
 library(dplyr)
 library(ggplot2)
 
-stonehaven_orbital <- orbital_velocity(bathymetry = 40, stonehaven_ts$wave_height, stonehaven_ts$wave_period, switch = 0, stonehaven_ts$wave_direction)
+stonehaven_orbital <- orbital_velocity(bathymetry = 40, stonehaven_ts$wave_height, stonehaven_ts$wave_period, switch = 0)
 stonehaven_ts \%>\%
 mutate(Velocity = stonehaven_orbital) \%>\%
 ggplot(aes(Date, Velocity))+
