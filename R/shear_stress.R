@@ -22,7 +22,7 @@
 #' library(dplyr)
 #' library(ggplot2)
 #'
-#' stonehaven_stress <- shields_bedshear(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
+#' stonehaven_stress <- shear_stress(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
 #'																			stonehaven_ts$wave_period , switch = 0, stonehaven_ts$wave_direction )
 #'
 #' stonehaven_ts %>%
@@ -33,7 +33,7 @@
 
 
 
-shields_bedshear <- function (bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, tidal_direction = NULL,
+shear_stress <- function (bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, tidal_direction = NULL,
 															wave_height = NULL, wave_period = NULL, wave_direction = NULL, switch = 0){
 
 	# step one. Check the inputs
