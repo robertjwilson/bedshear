@@ -3,7 +3,7 @@
 bedshear
 ========
 
-bedshear is an R package that let's you calculate bed shear stress from combined waves and tides, and wave orbital velocity. Bedshear stress for combined waves and tides is calculated using the equations of [Soulsby and Clarke (2005)](https://www.researchgate.net/publication/313248287_Bed_Shear-stresses_Under_Combined_Waves_and_Currents_on_Smooth_and_Rough_Beds), and wave orbital velocity is calculated using the equations of [Souslby (2006)](http://eprints.hrwallingford.co.uk/692/1/TR155.pdf).
+bedshear is an R package that allows you to calculate bed shear stress from combined waves and tides, and wave orbital velocity. Bedshear stress for combined waves and tides is calculated using the equations of [Soulsby and Clarke (2005)](https://www.researchgate.net/publication/313248287_Bed_Shear-stresses_Under_Combined_Waves_and_Currents_on_Smooth_and_Rough_Beds), and wave orbital velocity is calculated using the equations of [Souslby (2006)](http://eprints.hrwallingford.co.uk/692/1/TR155.pdf).
 
 Installation
 ------------
