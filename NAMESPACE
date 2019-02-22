@@ -2,4 +2,5 @@ useDynLib(bedshear, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
 importFrom(Rcpp, evalCpp)
 
-export(shields_bedshear)
+export(shear_stress)
+export(orbital_velocity)
