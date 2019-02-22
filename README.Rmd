@@ -26,7 +26,7 @@ You can install the development version of bedshear from github using:
 devtools::install_github("r4ecology/bedshear", dependencies = TRUE)
 ```
 
-This depends on Rcpp, so please check you can compile C++ files that rely on the math library.
+This depends on Rcpp, so please check you can compile C++ files that rely on the math library. If you are a Windows user you will need to have [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed.
 
 ## Examples
 
