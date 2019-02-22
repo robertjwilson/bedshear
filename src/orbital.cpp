@@ -11,7 +11,6 @@ std::vector< std::vector<double> >  velocity(double h,  std::vector<double> Hs_V
 	double Hs;
 	double Px;
 	int switch1;
-	//double ar, T1, T2, T3, A1, A2, CDm, CDmax;
 
 	int vect_size;
 	vect_size = Hs_V.size();
@@ -19,7 +18,6 @@ std::vector< std::vector<double> >  velocity(double h,  std::vector<double> Hs_V
 	std::vector< std::vector<double> > output(vect_size, std::vector<double>(1));
 
 	int rr = 0;
-	// dynamic viscosity of seawater at 10C 35ppt
 
 	for(rr = 0; rr < vect_size; rr++){
 
