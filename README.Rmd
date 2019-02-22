@@ -28,23 +28,39 @@ devtools::install_github("r4ecology/rcdo", dependencies = TRUE)
 
 This depends on Rcpp, so please check you can compile C++ files that rely on the math library.
 
-## Example
+## Examples
 
 Calculating a time series of bed shear stress from wave and tide data near Stonehaven, Scotland.
 
 ```{r stonehaven_ts, message = FALSE}
+# load the necessary libraries
 library(bedshear)
 library(dplyr)
 library(ggplot2)
-
-stonehaven_stress <- shields_bedshear(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
+# calculate and plot the bed shear stress time series
+stonehaven_stress <- shear_stress(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
 																		stonehaven_ts$wave_period , switch = 0, stonehaven_ts$wave_direction )
-
 stonehaven_ts %>%
 	mutate(Stress = stonehaven_stress$shearmax) %>%
 	ggplot(aes(Date, Stress))+
 geom_line()
 ```
 
+
+
+Calculating a time series of wave orbital velocities from wave data near Stonehaven, Scotland.
+
+```{r message = FALSE}
+# load libraries
+library(bedshear)
+library(dplyr)
+library(ggplot2)
+# calculate and plot a time series of wave orbital velocities
+stonehaven_orbital <- orbital_velocity(bathymetry = 40, stonehaven_ts$wave_height, stonehaven_ts$wave_period, switch = 0)
+stonehaven_ts %>%
+mutate(Velocity = stonehaven_orbital) %>%
+ggplot(aes(Date, Velocity))+
+geom_line()
+```
 
 
