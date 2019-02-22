@@ -5,6 +5,20 @@
 
 using namespace Rcpp;
 
+// velocity
+std::vector< std::vector<double> > velocity(double h, std::vector<double> Hs_V, std::vector<double> Px_V, std::vector<int> switch1_V);
+RcppExport SEXP _bedshear_velocity(SEXP hSEXP, SEXP Hs_VSEXP, SEXP Px_VSEXP, SEXP switch1_VSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type h(hSEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type Hs_V(Hs_VSEXP);
+    Rcpp::traits::input_parameter< std::vector<double> >::type Px_V(Px_VSEXP);
+    Rcpp::traits::input_parameter< std::vector<int> >::type switch1_V(switch1_VSEXP);
+    rcpp_result_gen = Rcpp::wrap(velocity(h, Hs_V, Px_V, switch1_V));
+    return rcpp_result_gen;
+END_RCPP
+}
 // stress
 std::vector< std::vector<double> > stress(double h, double D50, std::vector<double> mu_V, std::vector<double> phic_V, std::vector<double> Hs_V, std::vector<double> Px_V, int switch1, std::vector<double> phiw_V);
 RcppExport SEXP _bedshear_stress(SEXP hSEXP, SEXP D50SEXP, SEXP mu_VSEXP, SEXP phic_VSEXP, SEXP Hs_VSEXP, SEXP Px_VSEXP, SEXP switch1SEXP, SEXP phiw_VSEXP) {
@@ -25,6 +39,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_bedshear_velocity", (DL_FUNC) &_bedshear_velocity, 4},
     {"_bedshear_stress", (DL_FUNC) &_bedshear_stress, 8},
     {NULL, NULL, 0}
 };
