@@ -21,7 +21,7 @@ std::vector< std::vector<double> >  velocity(double h,  std::vector<double> Hs_V
 	int rr = 0;
 	// dynamic viscosity of seawater at 10C 35ppt
 
-	for(rr = 0; rr < 35040; rr++){
+	for(rr = 0; rr < vect_size; rr++){
 
 		Hs = Hs_V[rr];
 		Px = Px_V[rr];
