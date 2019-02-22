@@ -23,7 +23,7 @@ You can install the development version of bedshear from github using:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("r4ecology/rcdo", dependencies = TRUE)
+devtools::install_github("r4ecology/bedshear", dependencies = TRUE)
 ```
 
 This depends on Rcpp, so please check you can compile C++ files that rely on the math library.
