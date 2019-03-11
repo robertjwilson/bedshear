@@ -275,10 +275,9 @@ std::vector< std::vector<double> >  stress(double h,
 									output[rr][2] = tm;
 									output[rr][3] = tmax;
 									output[rr][4] = trms;
-									output[rr][5] = T3;
-									output[rr][6] = tmax;
-									output[rr][7] = Uw;
-
+									output[rr][5] = FT;
+									output[rr][6] = TcS;
+									output[rr][7] = TcS_cr;
 									}
 									return output;
 									}
