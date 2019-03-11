@@ -4,11 +4,11 @@
 #' @description Calculates the combined bed shear stress from waves and tides
 #' @param bathymetry Bathymetry of location
 #' @param D50 Median grain size (mm).
-#' @param tidal_velocity A numeric vector of tidal velocity (m/s).
-#' @param tidal_direction A numeric vector of tidal directions (degrees).
-#' @param wave_height Significant wave height (m).
-#' @param wave_period Wave period.
-#' @param wave_direction Wave direction.
+#' @param tidal_velocity A numeric vector of tidal velocity (m/s). If not given, this is set to zero.
+#' @param tidal_direction A numeric vector of tidal directions (degrees). If not given, this is set to zero.
+#' @param wave_height Significant wave height (m). If not given, this is set to zero.
+#' @param wave_period Wave period. If not given, this is set to zero.
+#' @param wave_direction Wave direction. If not given, this is set to zero.
 #' @param switch Switching term. Defaults to 0.
 #'
 #' @return data frame with bed shear stress etc.
@@ -50,20 +50,38 @@ shear_stress <- function (bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, 
 	if(switch != 0 & switch != 1)
 		stop("error: switch can only be 0 or 1")
 
-	# check wave and tidal inputs are vectors
-	if(!is.numeric(tidal_velocity) + !is.numeric(tidal_direction) + !is.numeric(wave_height) + !is.numeric(wave_period) + !is.numeric(wave_direction))
-		stop("error: make sure wave and tidal inputs are all vectors")
 
 	# check the inputs are all the same length
 
 	if(length(tidal_velocity) != length(tidal_direction))
 		stop("error: wave and tidal inputs do not have the same length")
-	if(length(tidal_direction) != length(wave_height))
-		stop("error: wave and tidal inputs do not have the same length")
 	if(length(wave_period) != length(wave_height))
 		stop("error: wave and tidal inputs do not have the same length")
 	if(length(wave_period) != length(wave_direction))
 		stop("error: wave and tidal inputs do not have the same length")
+
+	# Now, if there is no wave or tide input, we need to set them to zero
+
+	# First, tides
+	if(length(tidal_velocity) == 0){
+		tidal_velocity <- rep(0, length(wave_height))
+		tidal_direction <- rep(0, length(wave_height))
+	}
+	# Second, waves
+
+	if(length(wave_height) == 0){
+		wave_height <- rep(0, length(tidal_direction))
+		wave_period<- rep(0, length(tidal_direction))
+		wave_direction <- rep(0, length(tidal_direction))
+	}
+
+	if(length(tidal_direction) != length(wave_height))
+		stop("error: wave and tidal inputs do not have the same length")
+
+	# check wave and tidal inputs are vectors
+	if(!is.numeric(tidal_velocity) + !is.numeric(tidal_direction) + !is.numeric(wave_height) + !is.numeric(wave_period) + !is.numeric(wave_direction))
+		stop("error: make sure wave and tidal inputs are all vectors")
+
 
 	result <- stress(h = bathymetry, D50 = D50, mu_V = tidal_velocity, phic_V = tidal_direction,
 												Hs_V = wave_height, Px_V = wave_period, switch1 = switch, phiw_V = wave_direction)
