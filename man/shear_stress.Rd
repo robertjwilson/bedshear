@@ -13,15 +13,15 @@ shear_stress(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL,
 
 \item{D50}{Median grain size (mm).}
 
-\item{tidal_velocity}{A numeric vector of tidal velocity (m/s).}
+\item{tidal_velocity}{A numeric vector of tidal velocity (m/s). If not given, this is set to zero.}
 
-\item{tidal_direction}{A numeric vector of tidal directions (degrees).}
+\item{tidal_direction}{A numeric vector of tidal directions (degrees). If not given, this is set to zero.}
 
-\item{wave_height}{Significant wave height (m).}
+\item{wave_height}{Significant wave height (m). If not given, this is set to zero.}
 
-\item{wave_period}{Wave period.}
+\item{wave_period}{Wave period. If not given, this is set to zero.}
 
-\item{wave_direction}{Wave direction.}
+\item{wave_direction}{Wave direction. If not given, this is set to zero.}
 
 \item{switch}{Switching term. Defaults to 0.}
 }

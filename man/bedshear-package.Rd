@@ -4,7 +4,7 @@
 \name{bedshear-package}
 \alias{bedshear}
 \alias{bedshear-package}
-\title{bedshear: What the Package Does (Title Case)}
+\title{bedshear: Calculations for bed shear stress and wave orbital velocity}
 \description{
 More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
