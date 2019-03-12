@@ -10,6 +10,7 @@ License: CC0
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    Rcpp
+    Rcpp,
+    dplyr
 LinkingTo: Rcpp
 RoxygenNote: 6.1.1
