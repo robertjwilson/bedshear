@@ -25,12 +25,12 @@
 #' library(ggplot2)
 #'
 #' stonehaven_stress <- shear_stress(
-#'   bathymetry = 40, 0.0002, tidal_velocity = stonehaven_ts$tidal_velocity, tidal_direction = stonehaven_ts$tidal_direction, wave_height = stonehaven_ts$wave_height,
+#'   bathymetry = 40, D50 = 0.0002, tidal_velocity = stonehaven_ts$tidal_velocity, tidal_direction = stonehaven_ts$tidal_direction, wave_height = stonehaven_ts$wave_height,
 #'   wave_period = stonehaven_ts$wave_period, wave_direction = stonehaven_ts$wave_direction, switch = 0
 #' )
 #'
 #' stonehaven_ts %>%
-#'   mutate(Stress = stonehaven_stress$shearmax) %>%
+#'   mutate(Stress = stonehaven_stress$shear_max) %>%
 #'   ggplot(aes(Date, Stress)) +
 #'   geom_line()
 shear_stress <- function(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, tidal_direction = NULL,
@@ -76,6 +76,7 @@ shear_stress <- function(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, t
     tide_output <- FALSE
     tidal_velocity <- rep(0, length(wave_height))
     tidal_direction <- rep(0, length(wave_height))
+    warning("No tidal inputs. These have been set to zero.")
   }
   # Second, waves
 
@@ -86,6 +87,7 @@ shear_stress <- function(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, t
     wave_height <- rep(0, length(tidal_direction))
     wave_period <- rep(0, length(tidal_direction))
     wave_direction <- rep(0, length(tidal_direction))
+    warning("No wave inputs. These have been set to zero.")
   }
 
   if (length(tidal_direction) != length(wave_height)) {
