@@ -26,22 +26,26 @@ shear_stress(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL,
 \item{switch}{Switching term. Defaults to 0.}
 }
 \value{
-data frame with bed shear stress etc.
+Data frame with mean shear stress, maximum shear stress, root mean square shear stress, tidal current only shear stress (if tides supplied),
+wave-only shear stress (if waves supplied), Shields number, Critical Shields,  Flow type.
 }
 \description{
 Calculates the combined bed shear stress from waves and tides
 }
 \examples{
+
 # Calculating a time series of bed shear stress at Stonehaven
 library(bedshear)
 library(dplyr)
 library(ggplot2)
 
-stonehaven_stress <- shear_stress(bathymetry = 40,0.0002, stonehaven_ts$tidal_velocity, stonehaven_ts$tidal_direction,stonehaven_ts$wave_height,
-																		stonehaven_ts$wave_period , switch = 0, stonehaven_ts$wave_direction )
+stonehaven_stress <- shear_stress(
+  bathymetry = 40, 0.0002, tidal_velocity = stonehaven_ts$tidal_velocity, tidal_direction = stonehaven_ts$tidal_direction, wave_height = stonehaven_ts$wave_height,
+  wave_period = stonehaven_ts$wave_period, wave_direction = stonehaven_ts$wave_direction, switch = 0
+)
 
 stonehaven_ts \%>\%
-	mutate(Stress = stonehaven_stress$shearmax) \%>\%
-	ggplot(aes(Date, Stress))+
-geom_line()
+  mutate(Stress = stonehaven_stress$shearmax) \%>\%
+  ggplot(aes(Date, Stress)) +
+  geom_line()
 }
