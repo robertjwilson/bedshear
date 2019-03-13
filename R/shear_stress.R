@@ -1,6 +1,4 @@
 
-# to do: give the name of flow type, not the number
-
 #' @title Bed shear stress calculation
 #' @description Calculates the combined bed shear stress from waves and tides
 #' @param bathymetry Bathymetry of location
