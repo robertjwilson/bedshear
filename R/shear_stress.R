@@ -16,17 +16,17 @@
 
 
 #' @examples
-#'
+#' 
 #' # Calculating a time series of bed shear stress at Stonehaven
 #' library(bedshear)
 #' library(dplyr)
 #' library(ggplot2)
-#'
+#' 
 #' stonehaven_stress <- shear_stress(
 #'   bathymetry = 40, D50 = 0.0002, tidal_velocity = stonehaven_ts$tidal_velocity, tidal_direction = stonehaven_ts$tidal_direction, wave_height = stonehaven_ts$wave_height,
 #'   wave_period = stonehaven_ts$wave_period, wave_direction = stonehaven_ts$wave_direction, switch = 0
 #' )
-#'
+#' 
 #' stonehaven_ts %>%
 #'   mutate(Stress = stonehaven_stress$shear_max) %>%
 #'   ggplot(aes(Date, Stress)) +
@@ -106,17 +106,19 @@ shear_stress <- function(bathymetry = NULL, D50 = NULL, tidal_velocity = NULL, t
   result <- matrix(unlist(result), ncol = 8, byrow = TRUE)
   result <- as.data.frame(result)
 
-names(result) <- c("shear_current_only", "shear_wave_only", "shear_mean", "shear_max", "shear_rms", "flow_type", "shields_number", "shields_critical")
+  names(result) <- c("shear_current_only", "shear_wave_only", "shear_mean", "shear_max", "shear_rms", "flow_type", "shields_number", "shields_critical")
 
-# reorder them by importance
-result <- dplyr::select(result, "shear_mean",
-									 "shear_max",
-									 "shear_rms",
-										"shear_current_only",
-									 "shear_wave_only",
-									 "shields_number",
-									 "shields_critical",
-									 "flow_type")
+  # reorder them by importance
+  result <- dplyr::select(
+    result, "shear_mean",
+    "shear_max",
+    "shear_rms",
+    "shear_current_only",
+    "shear_wave_only",
+    "shields_number",
+    "shields_critical",
+    "flow_type"
+  )
 
 
 
@@ -130,11 +132,11 @@ result <- dplyr::select(result, "shear_mean",
     result <- dplyr::select(result, -shear_current_only)
   }
 
-	# convert the flow type to a name
+  # convert the flow type to a name
 
-	result$flow_type <- ifelse(result$flow_type == 1, "laminar", result$flow_type)
-	result$flow_type <- ifelse(result$flow_type == 2, "turbulent_smooth", result$flow_type)
-	result$flow_type <- ifelse(result$flow_type == 3, "turbulent_rough", result$flow_type)
+  result$flow_type <- ifelse(result$flow_type == 1, "laminar", result$flow_type)
+  result$flow_type <- ifelse(result$flow_type == 2, "turbulent_smooth", result$flow_type)
+  result$flow_type <- ifelse(result$flow_type == 3, "turbulent_rough", result$flow_type)
 
 
   result

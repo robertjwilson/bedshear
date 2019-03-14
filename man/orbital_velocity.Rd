@@ -23,14 +23,19 @@ numeric vector of wave orbital velocities
 Calculates the orbital velocity
 }
 \examples{
+
 # Calculating a time series of bed shear stress at Stonehaven
 library(bedshear)
 library(dplyr)
 library(ggplot2)
 
+
+# Calculating a time series of wave orbital velocities at Stonehaven
+
 stonehaven_orbital <- orbital_velocity(bathymetry = 40, stonehaven_ts$wave_height, stonehaven_ts$wave_period, switch = 0)
+
 stonehaven_ts \%>\%
-mutate(Velocity = stonehaven_orbital) \%>\%
-ggplot(aes(Date, Velocity))+
-geom_line()
+  mutate(Velocity = stonehaven_orbital) \%>\%
+  ggplot(aes(Date, Velocity)) +
+  geom_line()
 }
